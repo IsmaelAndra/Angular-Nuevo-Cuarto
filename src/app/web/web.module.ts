@@ -4,15 +4,13 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
 import { ContactComponent } from './contact/contact.component';
-import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
     ProductsComponent,
-    ContactComponent,
-    NotfoundComponent
+    ContactComponent
   ],
   imports: [
     CommonModule
@@ -21,8 +19,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HomeComponent,
     AboutComponent,
     ProductsComponent,
-    ContactComponent,
-    NotfoundComponent
+    ContactComponent
   ]
 })
 export class WebModule { }
