@@ -16,11 +16,11 @@ export class ProductComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.getProducts();
-    //this.getProduct();
+    //this.getProducts();
+    //this.getProduct(57);
     //this.createProduct();
     //this.updateProduct();
-    //this.deleteProduct();
+    this.deleteProduct(204);
   }
 
   getProducts(){
@@ -41,16 +41,30 @@ export class ProductComponent implements OnInit {
     )
   }
 
-  createProduct(product: CreateProductDto){
-    this.productHttpService.store(product).subscribe(
+  createProduct(){
+    const data = {
+      title: 'Balon',
+      price: 50,
+      description: 'Balon de futbol profesional - Jhonny Andrade',
+      images: [
+        'https://cdn.shopify.com/s/files/1/0120/6485/0016/products/MK-4.jpg?v=1608244207'
+      ],
+      categoryId: 1,
+    };
+    this.productHttpService.store(data).subscribe(
       response => {
         console.log(response);
       }
     )
   }
 
-  updateProduct(id: ProductModel['id'], product: UpdateProductDto){
-    this.productHttpService.update(id, product).subscribe(
+  updateProduct(){
+    const data = {
+      title: 'Pupos',
+      price: 250,
+      descripcion: 'Pupos Profesionales Mercurial - Jhonny Andrade'
+    };
+    this.productHttpService.update(204, data).subscribe(
       response =>{
         console.log(response);
       }
