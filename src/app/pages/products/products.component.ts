@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateProductDto, ProductModel, UpdateProductDto } from 'src/app/models/product.model';
-import { ProductHttpService } from 'src/app/services/product.service'
+import { ProductHttpService } from 'src/app/services/product.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-product',
@@ -62,11 +63,33 @@ export class ProductsComponent implements OnInit {
   }
   
   deleteProduct(id: ProductModel['id']){
-    this.productHttpService.destroy(id).subscribe(
-      response =>{
-        this.products = this.products.filter(product => product.id != id);
-        console.log(response);
+    Swal.fire({
+      title: 'Desea eliminar el producto',
+      text: "No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Eliminado!',
+          'Producto eliminado.',
+          'success'
+        )
+        setTimeout(() => {
+          this.productHttpService.destroy(id).subscribe(
+            response =>{
+              this.products = this.products.filter(product => product.id != id);
+              console.log(response);
+              window.location.href = "http://localhost:4200/dashboard/products";
+            }
+          );
+        }, 3000);
       }
-    )
+    })
   }
 }
+
+
