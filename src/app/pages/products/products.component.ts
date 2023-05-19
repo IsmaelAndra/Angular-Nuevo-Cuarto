@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-   products:ProductModel[] = [];
+   products: ProductModel[] = [];
    selectedProduct: UpdateProductDto = {title:'', price:0, description:''};
 
   constructor(private productHttpService:ProductHttpService) {
